@@ -18,10 +18,10 @@ jobs:
         dotnet-version: '10.0.x'
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore src/Ampla.LogReader.sln
 
     - name: Build project
-      run: dotnet build --no-restore --configuration Release
+      run: dotnet build src/Ampla.LogReader.sln --no-restore --configuration Release
 
     - name: Run unit tests
-      run: dotnet test --no-build --configuration Release --verbosity normal
+      run: dotnet test src/Ampla.LogReader.sln --no-build --configuration Release --verbosity normal
