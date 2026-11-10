@@ -25,26 +25,18 @@ namespace Ampla.LogReader.EventLogs
 
                 int number = Math.Min(eventLog.Entries.Count, limitEntries);
                 for (int i = 0; i < number; i++)
-                {   
+                {
                     entries.Add(new SimpleEventLogEntry(eventLog.Entries[i]));
                 }
+
                 return entries;
             }
-            
+
             var result = new List<SimpleEventLogEntry>();
 
             foreach (EventLogEntry entry in eventLog.Entries)
             {
-                try
-                {
-                    result.Add(new SimpleEventLogEntry(entry));
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(
-                        $"EventLog failure. Source='{entry.Source}', Index={entry.Index}, InstanceId={entry.InstanceId}",
-                        ex);
-                }
+                result.Add(new SimpleEventLogEntry(entry));
             }
 
             return result;
