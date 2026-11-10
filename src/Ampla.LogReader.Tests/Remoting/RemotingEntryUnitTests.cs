@@ -72,7 +72,7 @@ namespace Ampla.LogReader.Remoting
             string identity = XmlHelper.GetValue(xmlNode, "Identity", string.Empty);
 
             Assert.That(identity, Is.Not.Empty);
-            Assert.That(identity, Is.StringContaining("TESTDOMAIN\\sysadmin"));
+            Assert.That(identity, Does.Contain("TESTDOMAIN\\sysadmin"));
             Assert.That(entry.Identity, Is.EqualTo(identity));
         }
 
@@ -98,7 +98,7 @@ namespace Ampla.LogReader.Remoting
             const string truncatedName = "Citect.Ampla.General.Common.IReportingService";
 
             Assert.That(typeName, Is.Not.Empty);
-            Assert.That(typeName, Is.StringStarting(truncatedName));
+            Assert.That(typeName, Does.StartWith(truncatedName));
             Assert.That(entry.TypeName, Is.EqualTo(truncatedName));
         }
 
@@ -122,7 +122,7 @@ namespace Ampla.LogReader.Remoting
             string arguments = XmlHelper.GetInnerXml(xmlNode, "__Args");
 
             Assert.That(arguments, Is.Not.Empty);
-            Assert.That(arguments, Is.StringContaining("System.Guid"));
+            Assert.That(arguments, Does.Contain("System.Guid"));
             Assert.That(entry.ArgumentXml, Is.EqualTo(arguments));
         }
 
@@ -134,7 +134,7 @@ namespace Ampla.LogReader.Remoting
             string arguments = XmlHelper.GetOuterXml(xmlNode, "__Args");
 
             Assert.That(arguments, Is.Not.Empty);
-            Assert.That(arguments, Is.StringContaining("System.Guid"));
+            Assert.That(arguments, Does.Contain("System.Guid"));
             Assert.That(entry.Arguments.Length, Is.EqualTo(1));
 
             Assert.That(entry.Arguments[0].TypeName, Is.EqualTo("System.Guid"));

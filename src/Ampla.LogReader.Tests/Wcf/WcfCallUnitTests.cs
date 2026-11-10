@@ -51,7 +51,7 @@ namespace Ampla.LogReader.Wcf
             string url = XmlHelper.GetValue(xmlNode, "Url", string.Empty);
 
             Assert.That(url, Is.Not.Empty);
-            Assert.That(url, Is.StringContaining("localhost"));
+            Assert.That(url, Does.Contain("localhost"));
             Assert.That(call.Url, Is.EqualTo(url));
         }
 
@@ -63,7 +63,7 @@ namespace Ampla.LogReader.Wcf
             string action = XmlHelper.GetValue(xmlNode, "Action", string.Empty);
 
             Assert.That(action, Is.Not.Empty);
-            Assert.That(action, Is.StringContaining("Ampla"));
+            Assert.That(action, Does.Contain("Ampla"));
             Assert.That(call.Action, Is.EqualTo(action));
         }
 
@@ -76,7 +76,7 @@ namespace Ampla.LogReader.Wcf
 
             Assert.That(method, Is.Empty);
             Assert.That(call.Method, Is.Not.EqualTo(method));
-            Assert.That(call.Action, Is.StringEnding(call.Method));
+            Assert.That(call.Action, Does.EndWith(call.Method));
         }
 
         [Test]
@@ -131,7 +131,7 @@ namespace Ampla.LogReader.Wcf
             string requestMessage = XmlHelper.GetOuterXml(xmlNode, "RequestMessage");
 
             Assert.That(requestMessage, Is.Not.Empty);
-            Assert.That(requestMessage, Is.StringContaining("http://schemas.xmlsoap.org/soap/envelope/"));
+            Assert.That(requestMessage, Does.Contain("http://schemas.xmlsoap.org/soap/envelope/"));
             Assert.That(call.RequestMessage, Is.EqualTo(requestMessage));
         }
 

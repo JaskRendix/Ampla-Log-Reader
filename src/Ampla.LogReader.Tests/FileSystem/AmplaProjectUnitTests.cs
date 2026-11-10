@@ -15,7 +15,7 @@ namespace Ampla.LogReader.FileSystem
                     Directory = Path.Combine(".\\Projects", "AmplaProject")
                 };
 
-            Assert.That(project.WcfLogDirectory, Is.StringEnding("ReplayLogs\\WCFRecorder"));
+            Assert.That(project.WcfLogDirectory, Does.EndWith("ReplayLogs\\WCFRecorder"));
         }
 
         [Test]
@@ -27,7 +27,7 @@ namespace Ampla.LogReader.FileSystem
                 Directory = Path.Combine(".\\Projects", "AmplaProject")
             };
 
-            Assert.That(project.RemotingDirectory, Is.StringEnding("ReplayLogs\\PAQueryLoad"));
+            Assert.That(project.RemotingDirectory, Does.EndWith("ReplayLogs\\PAQueryLoad"));
         }
 
         [Test]

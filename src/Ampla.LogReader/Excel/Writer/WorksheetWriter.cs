@@ -5,7 +5,6 @@ using ClosedXML.Excel;
 
 namespace Ampla.LogReader.Excel.Writer
 {
-
     /// <summary>
     ///     Allows the writing of values to an Excel Spreadsheet
     /// </summary>
@@ -77,7 +76,7 @@ namespace Ampla.LogReader.Excel.Writer
             {
                 foreach (IConvertible value in values)
                 {
-                    current.Value = value;
+                    current.Value = XLCellValue.FromObject(value);
                     current = current.CellRight();
                 }
             }
@@ -101,7 +100,7 @@ namespace Ampla.LogReader.Excel.Writer
         /// <param name="value"></param>
         public void WriteValue<T>(T value)
         {
-            current.Value = value;
+            current.Value = XLCellValue.FromObject(value);
             current = current.CellRight();
         }
 

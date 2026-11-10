@@ -186,9 +186,9 @@ namespace Ampla.LogReader.Statistics
         {
             TimeBasedStatistic<Entry, string> statistic = new TimeBasedStatistic<Entry, string>("Time-Unit Test", Entry.UtcFunc);
             string toString = statistic.ToString();
-            Assert.That(toString, Is.StringContaining("Time-Unit Test")); // name
-            Assert.That(toString, Is.StringContaining("Entry")); // Entry type
-            Assert.That(toString, Is.StringContaining("Count: 0")); // count
+            Assert.That(toString, Does.Contain("Time-Unit Test")); // name
+            Assert.That(toString, Does.Contain("Entry")); // Entry type
+            Assert.That(toString, Does.Contain("Count: 0")); // count
         }
     }
 }

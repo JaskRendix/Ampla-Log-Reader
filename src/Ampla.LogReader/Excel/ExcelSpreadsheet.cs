@@ -34,8 +34,8 @@ namespace Ampla.LogReader.Excel
 
             this.filename = filename;
             workbook = existingFile
-                           ? new XLWorkbook(filename, XLEventTracking.Enabled)
-                           : new XLWorkbook(XLEventTracking.Enabled);
+                        ? new XLWorkbook(filename)
+                        : new XLWorkbook();
             disposed = false;
         }
 
