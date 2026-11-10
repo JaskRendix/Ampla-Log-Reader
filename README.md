@@ -1,62 +1,81 @@
-#Ampla-Log-Reader#
+# Ampla Log Reader
 
-[![Build status](https://ci.appveyor.com/api/projects/status/9alr99srnng53ni7)](https://ci.appveyor.com/project/JoePlant/ampla-log-reader)
+Ampla logs can be spread across WCF, Production Analyst, and Windows Event Logs. Pulling them together when something goes wrong can take time.
 
-The Ampla software logs information in a number of places.  These include the WCF Logs, the Production Analyst Logs, and the Windows Event Log.
+Ampla Log Reader helps you review those logs in one place. It creates Excel reports with summaries and detailed records, making it easier to spot errors, track activity, and investigate issues.
 
-It can be difficult to combine this information and get a high level summary of any issues that are occuring. The project looks to provide a summary of some of the log files.
+## What it reads
 
-In the future, common issue can be addressed to provide indication about the health of the Ampla service.
+- **WCF logs:** call counts, errors, durations, and message activity.
+- **Production Analyst remoting logs:** calls between the Ampla Server and Production Analyst clients.
+- **Windows Event Logs:** event summaries and details.
 
-###WCF Logs###
+## Build and test
 
-Provides information about the number of calls, errors and types of messages from the Wcf Logs.
+Restore the dependencies:
 
-###Production Analyst Logs (Remoting Logs)###
-
-Provides summary information about the remoting calls between Ampla Server and Production Analyst clients
-
-###Event Logs (Windows Event Logs)###
-
-Provides summary information from machine event logs. 
-
-###To Run###
-
-Output all Wcf and Remoting logs from all the project logs in %ProgramData%\Citect\Ampla\Projects
+```bash
+dotnet restore src/Ampla.LogReader.sln
 ```
+
+Build the solution:
+
+```bash
+dotnet build src/Ampla.LogReader.sln --configuration Release
+```
+
+Run the tests:
+
+```bash
+dotnet test src/Ampla.LogReader.sln --configuration Release
+```
+
+## Run it
+
+Place your project logs under:
+
+```text
+%ProgramData%\Citect\Ampla\Projects
+```
+
+Then run:
+
+```text
 Ampla.LogReader.Console.exe
 ```
 
-Each Project will output a {ProjectName}.Wcf.xlsx and {ProjectName}.Remoting.xlsx.
+For each project, the tool generates:
 
-###Reports###
+```text
+{ProjectName}.Wcf.xlsx
+{ProjectName}.Remoting.xlsx
+```
 
-The Ampla Log Reader outputs its findings in Reports.  Reports provide high level statistics about the entries in each of the logs.
+The tool also creates `EventLog.Details.xlsx` from the local Windows Event Logs, in the app’s current working directory.
 
-A list of current reports include:
-  - WCF Reports
-	- Wcf Summary Report
-	- Wcf Action Report 
-	- Wcf Fault Report
-	- Wcf Url Report
-	- Wcf Hourly Summary Report
-	- Wcf Details Report
+## Reports
 
-  - Event Log Reports
-    - Event Log Summary Report
-	- Event Log Hourly Summary Report
-	- Event Log Details Report
-	
-  - Remoting Reports
-    - Remoting Summary Report
-    - Remoting Identity Report
-	
-Most reports provide group the events using different dimension and provide the following statistics
- - Count per category
- - Number of errors per category
- - Percentage errors
- - First record
- - Last record
- - Total Duration 
- - Average duration
- 
+The Excel workbooks include summary and detail reports for WCF, Event Log, and remoting data.
+
+Depending on the report, you’ll find breakdowns by action, fault, URL, identity, or hour. Reports can include:
+
+- Event and error counts
+- Error percentages
+- First and last record times
+- Total and average durations
+
+Use the summary sheets to spot patterns, then open the detail sheets to investigate specific records.
+
+## Project structure
+
+```text
+src/
+├── Ampla.LogReader
+├── Ampla.LogReader.Console
+├── Ampla.LogReader.EventLog.Console
+└── Ampla.LogReader.Tests
+```
+
+## Modernisation
+
+This fork updates the project with SDK-style .NET projects, GitHub Actions CI, modern NuGet packages, NUnit 3 support, and updated ClosedXML and OpenXML dependencies.
