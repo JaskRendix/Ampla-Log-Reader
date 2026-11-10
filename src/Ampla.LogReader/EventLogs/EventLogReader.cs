@@ -31,7 +31,23 @@ namespace Ampla.LogReader.EventLogs
                 return entries;
             }
             
-            return (from EventLogEntry entry in eventLog.Entries select new SimpleEventLogEntry(entry)).ToList();
+            var result = new List<SimpleEventLogEntry>();
+
+            foreach (EventLogEntry entry in eventLog.Entries)
+            {
+                try
+                {
+                    result.Add(new SimpleEventLogEntry(entry));
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(
+                        $"EventLog failure. Source='{entry.Source}', Index={entry.Index}, InstanceId={entry.InstanceId}",
+                        ex);
+                }
+            }
+
+            return result;
         }
     }
 }
