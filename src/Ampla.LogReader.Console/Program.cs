@@ -10,6 +10,7 @@ using Ampla.LogReader.Reports.Remoting;
 using Ampla.LogReader.Reports.Wcf;
 using Ampla.LogReader.Statistics;
 using Ampla.LogReader.Wcf;
+using CommandLine;
 
 namespace Ampla.LogReader.Console
 {
@@ -17,139 +18,147 @@ namespace Ampla.LogReader.Console
     {
         static void Main(string[] args)
         {
-            LogReaderOptions options = new LogReaderOptions();
-            if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
-            {
-                using (IReportWriter reportWriter = GetReportWriter(options))
+            Parser.Default.ParseArguments<LogReaderOptions>(args)
+                .WithParsed(options =>
                 {
-                    System.Console.WriteLine("Project: {0}", options.Project);
-                    System.Console.WriteLine("Output: {0}", options.OutputMode);
-
-                    TextWriter writer = System.Console.Out;
-
-                    if (options.LogDirectory != null)
+                    using (IReportWriter reportWriter = GetReportWriter(options))
                     {
-                        AmplaProject project = new AmplaProject
+                        System.Console.WriteLine("Project: {0}", options.Project);
+                        System.Console.WriteLine("Output: {0}", options.OutputMode);
+
+                        TextWriter writer = System.Console.Out;
+
+                        if (options.LogDirectory != null)
+                        {
+                            AmplaProject project = new AmplaProject
                             {
                                 ProjectName = "(Custom)",
                                 Directory = options.LogDirectory,
                             };
 
+                            TimeZoneInfo timeZone = TimeZoneHelper.GetTimeZone();
+                            if (!string.IsNullOrEmpty(options.TimeZone))
+                            {
+                                timeZone = TimeZoneHelper.GetSpecificTimeZone(options.TimeZone);
+                            }
 
-                        TimeZoneInfo timeZone = TimeZoneHelper.GetTimeZone();
-                        if (!string.IsNullOrEmpty(options.TimeZone))
-                        {
-                            timeZone = TimeZoneHelper.GetSpecificTimeZone(options.TimeZone);
+                            if (!options.SkipWcf)
+                            {
+                                writer.WriteLine("LogDirectory: {0}", project.Directory);
+                                WcfLogDirectory directory = new WcfLogDirectory(project);
+                                directory.ReadAll();
+
+                                writer.WriteLine("Read {0} entries from WcfLog files", directory.Entries.Count);
+
+                                writer.WriteLine("Creating Wcf Report -> WcfCall.Details.xlsx");
+
+                                new WcfExcelReportPack("WcfCall.Details.xlsx", directory, timeZone).Render();
+
+                                new WcfSummaryReport(
+                                    directory.Entries, reportWriter).Render();
+                                new WcfFaultSummaryReport(
+                                    directory.Entries, reportWriter).Render();
+                                new WcfHourlySummaryReport(
+                                    directory.Entries, reportWriter).Render();
+                                new WcfUrlSummaryReport(
+                                    directory.Entries, reportWriter).Render();
+                                new WcfActionSummaryReport(
+                                    directory.Entries, reportWriter).Render();
+                            }
+
+                            if (!options.SkipRemoting)
+                            {
+                                writer.WriteLine("LogDirectory: {0}", project.Directory);
+                                RemotingDirectory directory = new RemotingDirectory(project);
+                                directory.ReadAll();
+
+                                writer.WriteLine("Read {0} entries from Remoting files", directory.Entries.Count);
+
+                                new RemotingExcelReportPack("Remoting.Details.xlsx", directory).Render();
+
+                                new RemotingSummaryReport(
+                                    directory.Entries, reportWriter).Render();
+                                new RemotingIdentitySummaryReport(
+                                    directory.Entries, reportWriter).Render();
+
+                                //new WcfFaultSummaryReport(
+                                //    directory.Entries, reportWriter).Render();
+                                //new RemotingHourlySummaryReport(
+                                //    directory.Entries, reportWriter).Render();
+                                //new RemotingUrlSummaryReport(
+                                //    directory.Entries, reportWriter).Render();
+                                //new WcfActionSummaryReport(
+                                //    directory.Entries, reportWriter).Render();
+                            }
+
+                            if (!options.SkipEventLog)
+                            {
+                                writer.WriteLine("Event Log Processing");
+                                IEventLogSystem eventLogSystem = new LocalEventLogSystem();
+
+                                new EventLogReportPack("EventLog.Details.xlsx", eventLogSystem).Render();
+                            }
                         }
-
-                        if (!options.SkipWcf)
+                        else
                         {
-                            writer.WriteLine("LogDirectory: {0}", project.Directory);
-                            WcfLogDirectory directory = new WcfLogDirectory(project);
-                            directory.ReadAll();
+                            AmplaProjectDirectories projectDirectories = new AmplaProjectDirectories();
 
-                            writer.WriteLine("Read {0} entries from WcfLog files", directory.Entries.Count);
+                            foreach (AmplaProject project in projectDirectories.GetAmplaProjects())
+                            {
+                                writer.WriteLine("Project: {0}", project.ProjectName);
+                                new WcfExcelReportPack(project).Render();
+                                new RemotingExcelReportPack(project).Render();
+                            }
 
-                            writer.WriteLine("Creating Wcf Report -> WcfCall.Details.xlsx");
-
-                            new WcfExcelReportPack("WcfCall.Details.xlsx", directory, timeZone).Render();
-
-                            new WcfSummaryReport(
-                                directory.Entries, reportWriter).Render();
-                            new WcfFaultSummaryReport(
-                                directory.Entries, reportWriter).Render();
-                            new WcfHourlySummaryReport(
-                                directory.Entries, reportWriter).Render();
-                            new WcfUrlSummaryReport(
-                                directory.Entries, reportWriter).Render();
-                            new WcfActionSummaryReport(
-                                directory.Entries, reportWriter).Render();
-                        }
-
-                        if (!options.SkipRemoting)
-                        {
-                            writer.WriteLine("LogDirectory: {0}", project.Directory);
-                            RemotingDirectory directory = new RemotingDirectory(project);
-                            directory.ReadAll();
-
-                            writer.WriteLine("Read {0} entries from Remoting files", directory.Entries.Count);
-
-                            new RemotingExcelReportPack("Remoting.Details.xlsx", directory).Render();
-
-
-                            new RemotingSummaryReport(
-                                directory.Entries, reportWriter).Render();
-                            new RemotingIdentitySummaryReport(
-                                directory.Entries, reportWriter).Render();
-
-                            //new WcfFaultSummaryReport(
-                            //    directory.Entries, reportWriter).Render();
-                            //new RemotingHourlySummaryReport(
-                            //    directory.Entries, reportWriter).Render();
-                            //new RemotingUrlSummaryReport(
-                            //    directory.Entries, reportWriter).Render();
-                            //new WcfActionSummaryReport(
-                            //    directory.Entries, reportWriter).Render();
-                        }
-
-                        if (!options.SkipEventLog)
-                        {
                             writer.WriteLine("Event Log Processing");
                             IEventLogSystem eventLogSystem = new LocalEventLogSystem();
 
                             new EventLogReportPack("EventLog.Details.xlsx", eventLogSystem).Render();
                         }
                     }
-                    else
-                    {
-                        AmplaProjectDirectories projectDirectories = new AmplaProjectDirectories();
-
-                        foreach (AmplaProject project in projectDirectories.GetAmplaProjects())
-                        {
-                            writer.WriteLine("Project: {0}", project.ProjectName);
-                            new WcfExcelReportPack(project).Render();
-                            new RemotingExcelReportPack(project).Render();
-                        }
-                        writer.WriteLine("Event Log Processing");
-                        IEventLogSystem eventLogSystem = new LocalEventLogSystem();
-
-                        new EventLogReportPack("EventLog.Details.xlsx", eventLogSystem).Render();
-                    }
-                }
-            }
-         
+                });
         }
 
         private static IReportWriter GetReportWriter(LogReaderOptions options)
         {
             IReportWriter reportWriter;
+
             switch (options.OutputMode)
             {
                 case OutputMode.Text:
-                    {
-                        reportWriter = new TextReportWriter(System.Console.Out);
-                        break;
-                    }
+                {
+                    reportWriter = new TextReportWriter(System.Console.Out);
+                    break;
+                }
+
                 case OutputMode.Xml:
+                {
+                    string fileName = options.OutputFile ?? "output.xml";
+
+                    XmlWriterSettings settings = new XmlWriterSettings
                     {
-                        string fileName = options.OutputFile ?? "output.xml";
-                        XmlWriterSettings settings = new XmlWriterSettings {Indent = true};
-                        XmlWriter xmlWriter = XmlWriter.Create(fileName, settings);
-                        reportWriter = new XmlReportWriter(xmlWriter);
-                        break;
-                    }
+                        Indent = true
+                    };
+
+                    XmlWriter xmlWriter = XmlWriter.Create(fileName, settings);
+                    reportWriter = new XmlReportWriter(xmlWriter);
+                    break;
+                }
+
                 case OutputMode.Excel:
-                    {
-                        string fileName = options.OutputFile ?? "output.xlsx";
-                        reportWriter = new ExcelReportWriter(fileName);
-                        break;
-                    }
+                {
+                    string fileName = options.OutputFile ?? "output.xlsx";
+                    reportWriter = new ExcelReportWriter(fileName);
+                    break;
+                }
+
                 default:
-                    {
-                        reportWriter = new TextReportWriter(System.Console.Out);
-                        break;
-                    }
+                {
+                    reportWriter = new TextReportWriter(System.Console.Out);
+                    break;
+                }
             }
+
             return reportWriter;
         }
     }

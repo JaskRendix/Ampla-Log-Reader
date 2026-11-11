@@ -2,7 +2,7 @@
 using System.Linq;
 using Ampla.LogReader.EventLogs;
 using Ampla.LogReader.Reports.Packs;
-using CommandLine.Text;
+using CommandLine;
 
 namespace Ampla.LogReader.EventLog.Console
 {
@@ -10,48 +10,52 @@ namespace Ampla.LogReader.EventLog.Console
     {
         static void Main(string[] args)
         {
-            EventLogReaderOptions options = new EventLogReaderOptions();
-            if (CommandLine.Parser.Default.ParseArgumentsStrict(args, options))
-            {
-                TextWriter writer = System.Console.Out;
+            Parser.Default.ParseArguments<EventLogReaderOptions>(args)
+                .WithParsed(options =>
+                {
+                    TextWriter writer = System.Console.Out;
 
-                writer.WriteLine("EventLogFile: {0}", options.EventLogFile);
-                writer.WriteLine("EventLogDirectory: {0}", options.EventLogDirectory);
-                writer.WriteLine("OutputFile: {0}", options.OutputFile);
+                    writer.WriteLine("EventLogFile: {0}", options.EventLogFile);
+                    writer.WriteLine("EventLogDirectory: {0}", options.EventLogDirectory);
+                    writer.WriteLine("OutputFile: {0}", options.OutputFile);
 
-                bool fileExists = File.Exists(options.EventLogFile);
-                bool dirExists = !string.IsNullOrEmpty(options.EventLogDirectory) &&
-                                 Directory.Exists(options.EventLogDirectory);
-                string[] files = new string[0];
-                
-                if (dirExists)
-                {
-                    DirectoryInfo dir = new DirectoryInfo(options.EventLogDirectory);
-                    files = dir.EnumerateFiles("*.evtx").Select(fi => fi.FullName).ToArray();
-                }
-                else if (fileExists)
-                {
-                    files = new []{options.EventLogFile};
-                }
-                else
-                {
-                    writer.WriteLine("Need to specify an event log file or directory\r\n{0}", HelpText.AutoBuild(options));
-                }
+                    bool fileExists = File.Exists(options.EventLogFile);
+                    bool dirExists = !string.IsNullOrEmpty(options.EventLogDirectory) &&
+                                     Directory.Exists(options.EventLogDirectory);
 
-                if (files.Length > 0)
-                {
-                    writer.WriteLine("Event Log Processing");
-                    foreach (string file in files)
+                    string[] files = new string[0];
+
+                    if (dirExists)
                     {
-                        writer.WriteLine(" EventLog: {0}", file);
+                        DirectoryInfo dir = new DirectoryInfo(options.EventLogDirectory);
+                        files = dir.EnumerateFiles("*.evtx")
+                                   .Select(fi => fi.FullName)
+                                   .ToArray();
                     }
-                    IEventLogSystem eventLogSystem = new FileEventLogSystem(files);
+                    else if (fileExists)
+                    {
+                        files = new[] { options.EventLogFile };
+                    }
+                    else
+                    {
+                        writer.WriteLine("Need to specify an event log file or directory");
+                    }
 
-                    new EventLogReportPack(options.OutputFile, eventLogSystem).Render();
-                }
-            }
+                    if (files.Length > 0)
+                    {
+                        writer.WriteLine("Event Log Processing");
 
+                        foreach (string file in files)
+                        {
+                            writer.WriteLine(" EventLog: {0}", file);
+                        }
+
+                        IEventLogSystem eventLogSystem = new FileEventLogSystem(files);
+
+                        new EventLogReportPack(options.OutputFile, eventLogSystem)
+                            .Render();
+                    }
+                });
         }
-
     }
 }
