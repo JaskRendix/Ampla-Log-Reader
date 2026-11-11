@@ -64,14 +64,14 @@ namespace Ampla.LogReader.EventLogs
 
 
         [Test]
-        [Ignore("This is difficult to test")]
+        [Explicit("Requires access to local Windows Event Logs")]
         public void CompareSystemEvents()
         {
             CompareLogReaders("System", "Compare.System.evtx", 10);
         }
 
         [Test]
-        [Ignore("This is difficult to test")]
+        [Explicit("Requires access to local Windows Event Logs")]
         public void CompareApplicationEvents()
         {
             CompareLogReaders("Application", "Compare.Application.evtx", 10);
