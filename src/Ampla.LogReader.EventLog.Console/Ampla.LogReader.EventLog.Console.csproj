@@ -6,7 +6,6 @@
     <RootNamespace>Ampla.LogReader.EventLog.Console</RootNamespace>
     <AssemblyName>Ampla.LogReader.EventLog.Console</AssemblyName>
     <PlatformTarget>x86</PlatformTarget>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <SupportedOSPlatform>windows</SupportedOSPlatform>
   </PropertyGroup>
 
@@ -18,11 +17,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Ampla.LogReader\Ampla.LogReader.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Include="..\Assembly.Common.cs" Link="Properties\Assembly.Common.cs" />
-    <Compile Include="..\Assembly.Version.cs" Link="Properties\Assembly.Version.cs" />
   </ItemGroup>
 
 </Project>
