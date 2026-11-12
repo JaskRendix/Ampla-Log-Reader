@@ -20,6 +20,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore src/Ampla.LogReader.sln
 
+    - name: Verify formatting
+      run: dotnet format src/Ampla.LogReader.sln --verify-no-changes
+
     - name: Build project
       run: dotnet build src/Ampla.LogReader.sln --no-restore --configuration Release
 
