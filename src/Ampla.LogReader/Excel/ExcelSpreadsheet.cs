@@ -104,7 +104,7 @@ namespace Ampla.LogReader.Excel
             if (IsReadOnly) throw new InvalidOperationException("Excel Spreadsheet is opened as ReadOnly");
 
             var worksheet = workbook.Worksheets.Add(dataTable, name);
-            
+
             return new WorksheetWriter(worksheet);
         }
 

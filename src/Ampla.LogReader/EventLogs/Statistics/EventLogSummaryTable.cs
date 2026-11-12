@@ -17,7 +17,7 @@ namespace Ampla.LogReader.EventLogs.Statistics
             last24Hrs = nowUtc.AddDays(-1);
             Name = name;
             dataTable = new DataTable(Name);
-            dataTable.Columns.Add("EventLog", typeof (string));
+            dataTable.Columns.Add("EventLog", typeof(string));
             dataTable.Columns.Add("Error-1hr", typeof(int));
             dataTable.Columns.Add("Warning-1hr", typeof(int));
             dataTable.Columns.Add("Information-1hr", typeof(int));
@@ -48,7 +48,7 @@ namespace Ampla.LogReader.EventLogs.Statistics
                 }
                 statistic.Add(logEntry);
             }
-            dataTable.Rows.Add(entry.Name, 
+            dataTable.Rows.Add(entry.Name,
                 lastHour.ErrorCount, lastHour.WarningCount, lastHour.InformationCount,
                 lastDay.ErrorCount, lastDay.WarningCount, lastDay.InformationCount,
                 statistic.ErrorCount, statistic.WarningCount, statistic.InformationCount, statistic.TotalCount);

@@ -13,7 +13,7 @@ namespace Ampla.LogReader
         {
             CultureInfo inside;
             CultureInfo before = Thread.CurrentThread.CurrentUICulture;
-            
+
             using (ThreadCulture.SetUICulture("fr-FR"))
             {
                 inside = Thread.CurrentThread.CurrentUICulture;

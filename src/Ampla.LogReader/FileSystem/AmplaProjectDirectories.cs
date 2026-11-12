@@ -20,9 +20,10 @@ namespace Ampla.LogReader.FileSystem
                 {
                     IEnumerable<DirectoryInfo> amplaDirectories = new DirectoryInfo(projectsDir).EnumerateDirectories();
                     projectList.AddRange(amplaDirectories.Select(amplaDirectory => new AmplaProject
-                        {
-                            ProjectName = amplaDirectory.Name, Directory = amplaDirectory.FullName
-                        }));
+                    {
+                        ProjectName = amplaDirectory.Name,
+                        Directory = amplaDirectory.FullName
+                    }));
                 }
             }
 

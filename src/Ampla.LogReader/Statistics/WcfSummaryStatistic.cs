@@ -5,9 +5,9 @@ namespace Ampla.LogReader.Statistics
 {
     public class WcfSummaryStatistic : SummaryStatistic<WcfCall>
     {
-        public WcfSummaryStatistic(string name) : base(name, 
-            wcf => wcf.IsFault, 
-            wcf => wcf.CallTime, 
+        public WcfSummaryStatistic(string name) : base(name,
+            wcf => wcf.IsFault,
+            wcf => wcf.CallTime,
             wcf => wcf.Duration)
         {
         }

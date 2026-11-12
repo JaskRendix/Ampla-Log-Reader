@@ -13,7 +13,7 @@ namespace Ampla.LogReader.EventLog.Console
         [Option('d', "dir", Required = false, HelpText = "Event Log directory to parse for Event Log files (*.evtx)")]
         public string EventLogDirectory { get; set; }
 
-//        [Option('z', "timezone", HelpText = "TimeZone for local date times", DefaultValue = null)]
-//        public string TimeZone { get; set; }
+        //        [Option('z', "timezone", HelpText = "TimeZone for local date times", DefaultValue = null)]
+        //        public string TimeZone { get; set; }
     }
 }

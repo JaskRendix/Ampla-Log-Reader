@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Ampla.LogReader.Statistics
 {
-    public class TimeBasedStatistic<TEntry, TKey> : IStatistic<TEntry>, IComparable<TimeBasedStatistic<TEntry, TKey>> where TKey :IComparable<TKey> 
+    public class TimeBasedStatistic<TEntry, TKey> : IStatistic<TEntry>, IComparable<TimeBasedStatistic<TEntry, TKey>> where TKey : IComparable<TKey>
     {
         private readonly Func<TEntry, DateTime> dateTimeFunc;
         private long firstEntryTicks = DateTime.MaxValue.Ticks;
@@ -37,7 +37,7 @@ namespace Ampla.LogReader.Statistics
             get
             {
                 return count == 0
-                           ? (DateTime?) null
+                           ? (DateTime?)null
                            : isLocalTime
                                  ? new DateTime(firstEntryTicks, DateTimeKind.Local)
                                  : new DateTime(firstEntryTicks, DateTimeKind.Utc).ToLocalTime();

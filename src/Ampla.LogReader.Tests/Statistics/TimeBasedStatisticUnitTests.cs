@@ -69,7 +69,7 @@ namespace Ampla.LogReader.Statistics
         public void SetLocalTime()
         {
             TimeBasedStatistic<Entry, string> statistic = new TimeBasedStatistic<Entry, string>("UnitTest", Entry.LocalFunc, true);
-            statistic.Add(new Entry { Local = DateTime.Today});
+            statistic.Add(new Entry { Local = DateTime.Today });
             Assert.That(statistic.Count, Is.EqualTo(1));
             Assert.That(statistic.FirstEntry, Is.EqualTo(DateTime.Today));
             Assert.That(statistic.LastEntry, Is.EqualTo(DateTime.Today));
@@ -81,7 +81,7 @@ namespace Ampla.LogReader.Statistics
         public void SetDateTime()
         {
             TimeBasedStatistic<Entry, string> statistic = new TimeBasedStatistic<Entry, string>("UnitTest", Entry.UtcFunc);
-            statistic.Add(new Entry {Utc = DateTime.Today.ToUniversalTime()});
+            statistic.Add(new Entry { Utc = DateTime.Today.ToUniversalTime() });
             Assert.That(statistic.Count, Is.EqualTo(1));
             Assert.That(statistic.FirstEntry, Is.EqualTo(DateTime.Today));
             Assert.That(statistic.LastEntry, Is.EqualTo(DateTime.Today));
@@ -92,8 +92,8 @@ namespace Ampla.LogReader.Statistics
         public void AddTwoEntries()
         {
             TimeBasedStatistic<Entry, string> statistic = new TimeBasedStatistic<Entry, string>("UnitTest", Entry.UtcFunc);
-            statistic.Add(new Entry {Utc = DateTime.Today.ToUniversalTime()});
-            statistic.Add(new Entry {Utc = DateTime.Today.AddDays(-1).ToUniversalTime()});
+            statistic.Add(new Entry { Utc = DateTime.Today.ToUniversalTime() });
+            statistic.Add(new Entry { Utc = DateTime.Today.AddDays(-1).ToUniversalTime() });
             Assert.That(statistic.Count, Is.EqualTo(2));
             Assert.That(statistic.FirstEntry, Is.EqualTo(DateTime.Today.AddDays(-1)));
             Assert.That(statistic.LastEntry, Is.EqualTo(DateTime.Today));
@@ -119,7 +119,7 @@ namespace Ampla.LogReader.Statistics
             Assert.That(statistic1.CompareTo(statistic2), Is.EqualTo(0));
             Assert.That(list[0], Is.EqualTo(statistic3));
 
-            statistic1.Add(new Entry {Utc = DateTime.Today.ToUniversalTime()});
+            statistic1.Add(new Entry { Utc = DateTime.Today.ToUniversalTime() });
             list.Sort();
             Assert.That(list[0], Is.EqualTo(statistic1)); // one entry
             Assert.That(list[1], Is.EqualTo(statistic3)); // no entries (Earlier)
@@ -141,8 +141,8 @@ namespace Ampla.LogReader.Statistics
                     statistic3
                 };
 
-            Entry first = new Entry {Utc = DateTime.Today.ToUniversalTime()};
-            Entry last = new Entry {Utc = first.Utc.AddHours(1)};
+            Entry first = new Entry { Utc = DateTime.Today.ToUniversalTime() };
+            Entry last = new Entry { Utc = first.Utc.AddHours(1) };
 
             statistic1.Add(first);
             statistic2.Add(first);
@@ -158,7 +158,7 @@ namespace Ampla.LogReader.Statistics
         public void CompareOneLocal()
         {
             TimeBasedStatistic<Entry, string> statistic1 = new TimeBasedStatistic<Entry, string>("Unit Test", Entry.LocalFunc, isLocalTime: true);
-            TimeBasedStatistic<Entry, string> statistic2 = new TimeBasedStatistic<Entry, string>("Unit Test", Entry.LocalFunc, isLocalTime:true);
+            TimeBasedStatistic<Entry, string> statistic2 = new TimeBasedStatistic<Entry, string>("Unit Test", Entry.LocalFunc, isLocalTime: true);
             TimeBasedStatistic<Entry, string> statistic3 = new TimeBasedStatistic<Entry, string>("Earlier", Entry.LocalFunc, isLocalTime: true);
 
             List<TimeBasedStatistic<Entry, string>> list = new List<TimeBasedStatistic<Entry, string>>

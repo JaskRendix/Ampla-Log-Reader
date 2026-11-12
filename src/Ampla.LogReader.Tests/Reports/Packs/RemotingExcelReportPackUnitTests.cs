@@ -9,108 +9,108 @@ namespace Ampla.LogReader.Reports.Packs
     [TestFixture]
     public class RemotingExcelReportPackUnitTests : ExcelTestFixture
     {
-         [Test]
-         public void WithRemotingFiles()
-         {
-             AmplaProject project = AmplaTestProjects.GetAmplaProject();
+        [Test]
+        public void WithRemotingFiles()
+        {
+            AmplaProject project = AmplaTestProjects.GetAmplaProject();
 
-             RemotingExcelReportPack reportPack = new RemotingExcelReportPack(Filename, project);
-             reportPack.Render();
+            RemotingExcelReportPack reportPack = new RemotingExcelReportPack(Filename, project);
+            reportPack.Render();
 
-             Assert.That(File.Exists(Filename), Is.True);
+            Assert.That(File.Exists(Filename), Is.True);
 
-             using (ExcelPage page = AssertWorksheetContainsData("Summary", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
-             
-             using (ExcelPage page = AssertWorksheetContainsData("Sessions", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
-             
-             using (ExcelPage page = AssertWorksheetContainsData("Remoting", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
+            using (ExcelPage page = AssertWorksheetContainsData("Summary", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
 
-             using (ExcelPage page = AssertWorksheetContainsData("Locations", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
-         }
+            using (ExcelPage page = AssertWorksheetContainsData("Sessions", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
 
-         [Test]
-         public void WithNoRemotingFiles()
-         {
-             AmplaProject project = AmplaTestProjects.GetWcfOnlyProject();
+            using (ExcelPage page = AssertWorksheetContainsData("Remoting", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
 
-             RemotingExcelReportPack reportPack = new RemotingExcelReportPack(Filename, project);
-             reportPack.Render();
+            using (ExcelPage page = AssertWorksheetContainsData("Locations", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
+        }
 
-             Assert.That(File.Exists(Filename), Is.True);
+        [Test]
+        public void WithNoRemotingFiles()
+        {
+            AmplaProject project = AmplaTestProjects.GetWcfOnlyProject();
 
-             using (ExcelPage page = AssertWorksheetContainsData("Summary", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
-            
-             using (ExcelPage page = AssertWorksheetContainsData("Sessions", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.EqualTo(new string[] {"None"}));
-             }
-             
-             using (ExcelPage page = AssertWorksheetContainsData("Remoting", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Empty);
-             }
+            RemotingExcelReportPack reportPack = new RemotingExcelReportPack(Filename, project);
+            reportPack.Render();
 
-             using (ExcelPage page = AssertWorksheetContainsData("Locations", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Empty);
-             }
-         }
+            Assert.That(File.Exists(Filename), Is.True);
 
-         [Test]
-         public void UsingRemotingResourceFiles()
-         {
-             RemotingDirectory directory = new RemotingDirectory(@"./Remoting/Resources");
-             RemotingExcelReportPack reportPack = new RemotingExcelReportPack(Filename, directory);
-             reportPack.Render();
+            using (ExcelPage page = AssertWorksheetContainsData("Summary", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
 
-             Assert.That(File.Exists(Filename), Is.True);
+            using (ExcelPage page = AssertWorksheetContainsData("Sessions", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.EqualTo(new string[] { "None" }));
+            }
 
-             using (ExcelPage page = AssertWorksheetContainsData("Summary", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
+            using (ExcelPage page = AssertWorksheetContainsData("Remoting", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Empty);
+            }
 
-             using (ExcelPage page = AssertWorksheetContainsData("Sessions", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
+            using (ExcelPage page = AssertWorksheetContainsData("Locations", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Empty);
+            }
+        }
 
-             using (ExcelPage page = AssertWorksheetContainsData("Remoting", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
+        [Test]
+        public void UsingRemotingResourceFiles()
+        {
+            RemotingDirectory directory = new RemotingDirectory(@"./Remoting/Resources");
+            RemotingExcelReportPack reportPack = new RemotingExcelReportPack(Filename, directory);
+            reportPack.Render();
 
-             using (ExcelPage page = AssertWorksheetContainsData("Locations", 10))
-             {
-                 page.Row(1).AssertValues<string>(Is.Not.Empty);
-                 page.Row(2).AssertValues<string>(Is.Not.Empty);
-             }
-         }
+            Assert.That(File.Exists(Filename), Is.True);
+
+            using (ExcelPage page = AssertWorksheetContainsData("Summary", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
+
+            using (ExcelPage page = AssertWorksheetContainsData("Sessions", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
+
+            using (ExcelPage page = AssertWorksheetContainsData("Remoting", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
+
+            using (ExcelPage page = AssertWorksheetContainsData("Locations", 10))
+            {
+                page.Row(1).AssertValues<string>(Is.Not.Empty);
+                page.Row(2).AssertValues<string>(Is.Not.Empty);
+            }
+        }
     }
 }

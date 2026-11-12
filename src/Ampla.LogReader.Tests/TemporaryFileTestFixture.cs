@@ -10,14 +10,14 @@
         }
 
         private TempDirectory TempDirectory { get; set; }
-        
+
         protected override void OnFixtureSetUp()
         {
             string directory = @"Files\" + GetType().Name;
             string pattern = "UnitTest_{0:00}." + fileExtension;
             TempDirectory = new TempDirectory(directory, pattern);
             TempDirectory.DeleteAllFiles();
-        
+
             base.OnFixtureSetUp();
         }
 

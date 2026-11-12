@@ -28,20 +28,20 @@ namespace Ampla.LogReader.Reports.Data
         {
 
             DataTable dataTable = new DataTable(tableName);
-            dataTable.Columns.Add("Id", typeof (int));
-            dataTable.Columns.Add("CallTimeUtc", typeof (DateTime));
-            dataTable.Columns.Add("CallTimeLocal", typeof (DateTime));
-            dataTable.Columns.Add("Url", typeof (string));
-            dataTable.Columns.Add("Action", typeof (string));
-            dataTable.Columns.Add("Method", typeof (string));
-            dataTable.Columns.Add("Duration", typeof (double));
-            dataTable.Columns.Add("RequestMessage", typeof (string));
-            dataTable.Columns.Add("ResponseMessageLength", typeof (double));
-            dataTable.Columns.Add("IsFault", typeof (bool));
-            dataTable.Columns.Add("FaultCode", typeof (string));
-            dataTable.Columns.Add("FaultString", typeof (string));
-            dataTable.Columns.Add("FaultDetails", typeof (string));
-            dataTable.Columns.Add("Source", typeof (string));
+            dataTable.Columns.Add("Id", typeof(int));
+            dataTable.Columns.Add("CallTimeUtc", typeof(DateTime));
+            dataTable.Columns.Add("CallTimeLocal", typeof(DateTime));
+            dataTable.Columns.Add("Url", typeof(string));
+            dataTable.Columns.Add("Action", typeof(string));
+            dataTable.Columns.Add("Method", typeof(string));
+            dataTable.Columns.Add("Duration", typeof(double));
+            dataTable.Columns.Add("RequestMessage", typeof(string));
+            dataTable.Columns.Add("ResponseMessageLength", typeof(double));
+            dataTable.Columns.Add("IsFault", typeof(bool));
+            dataTable.Columns.Add("FaultCode", typeof(string));
+            dataTable.Columns.Add("FaultString", typeof(string));
+            dataTable.Columns.Add("FaultDetails", typeof(string));
+            dataTable.Columns.Add("Source", typeof(string));
 
             return dataTable;
         }

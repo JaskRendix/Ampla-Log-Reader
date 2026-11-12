@@ -36,7 +36,7 @@ namespace Ampla.LogReader.EventLogs
             try
             {
                 SecurityIdentifier security = new SecurityIdentifier(sid);
-                string value = security.Translate(typeof (NTAccount)).Value;
+                string value = security.Translate(typeof(NTAccount)).Value;
                 cache[sid] = value;
                 return value;
             }
@@ -48,7 +48,7 @@ namespace Ampla.LogReader.EventLogs
             {
                 throw new ArgumentException("SID: " + sid, ex);
             }
-            cache[sid] = sid; 
+            cache[sid] = sid;
             return sid;
         }
     }

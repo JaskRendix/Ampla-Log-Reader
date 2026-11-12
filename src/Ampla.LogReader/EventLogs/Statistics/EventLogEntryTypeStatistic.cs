@@ -58,7 +58,8 @@ namespace Ampla.LogReader.EventLogs.Statistics
 
         public override IEnumerable<Result> Results
         {
-            get {
+            get
+            {
                 yield return Result.New(Name, "Error Count", ErrorCount);
                 yield return Result.New(Name, "Warning Count", WarningCount);
                 yield return Result.New(Name, "Information Count", InformationCount);

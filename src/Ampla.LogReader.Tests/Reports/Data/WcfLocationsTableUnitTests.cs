@@ -52,7 +52,7 @@ namespace Ampla.LogReader.Reports.Data
 
             Assert.That(logDirectory.Entries, Is.Not.Empty);
             WcfCall getData = logDirectory.Entries.Find(re => re.Method == "GetData");
-            
+
             Assert.That(getData, Is.Not.Null);
             string user = getData.RequestMessage;
 

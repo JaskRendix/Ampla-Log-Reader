@@ -9,17 +9,17 @@ namespace Ampla.LogReader.Reports.EventLogs
     [TestFixture]
     public class EventLogSummaryReportUnitTests : TestFixture
     {
-         [Test]
-         public void EmptyCalls()
-         {
-             EventLog eventLog = new LocalEventLogSystem().GetEventLog("Application");
-             SimpleReportWriter writer = new SimpleReportWriter();
-             EventLogSummaryReport report = new EventLogSummaryReport(eventLog, new List<SimpleEventLogEntry>(), writer);
-             
-             report.Render();
+        [Test]
+        public void EmptyCalls()
+        {
+            EventLog eventLog = new LocalEventLogSystem().GetEventLog("Application");
+            SimpleReportWriter writer = new SimpleReportWriter();
+            EventLogSummaryReport report = new EventLogSummaryReport(eventLog, new List<SimpleEventLogEntry>(), writer);
 
-             Assert.That(writer.ToString(), Is.Not.Empty);
-         }
-     
+            report.Render();
+
+            Assert.That(writer.ToString(), Is.Not.Empty);
+        }
+
     }
 }

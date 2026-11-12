@@ -95,14 +95,14 @@ namespace Ampla.LogReader.Reports.Pages
 
                 foreach (var entry in directory.Entries)
                 {
-                    if (entry.Arguments.Length > 0 
+                    if (entry.Arguments.Length > 0
                         && entry.Arguments[0].Value == "4682a57e-7d20-4b2c-a2ae-46a6899feaaf"
                         && entry.CallTimeLocal > end)
                     {
                         end = entry.CallTimeLocal;
                     }
                 }
-                
+
             }
             using (IExcelSpreadsheet spreadsheet = ExcelSpreadsheet.OpenReadOnly(Filename))
             {

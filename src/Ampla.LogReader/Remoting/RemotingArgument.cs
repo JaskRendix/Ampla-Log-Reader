@@ -12,11 +12,11 @@ namespace Ampla.LogReader.Remoting
             foreach (XmlNode node in nodeList)
             {
                 RemotingArgument argument = new RemotingArgument
-                    {
-                        Index = arguments.Count + 1,
-                        TypeName = node.Name,
-                        Value = node.InnerText
-                    };
+                {
+                    Index = arguments.Count + 1,
+                    TypeName = node.Name,
+                    Value = node.InnerText
+                };
                 arguments.Add(argument);
             }
             return arguments.ToArray();

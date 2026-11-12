@@ -29,7 +29,7 @@ namespace Ampla.LogReader.Reports.Pages
 
         protected override void RenderPage(IWorksheetWriter writer)
         {
-            UpdateStatistics(new IStatistic<WcfCall>[] {summaryStatistic, top10UrlStats, top10MethodStats});
+            UpdateStatistics(new IStatistic<WcfCall>[] { summaryStatistic, top10UrlStats, top10MethodStats });
 
             writer.WriteRow("Summary of Wcf calls");
             if (summaryStatistic.Count > 0)

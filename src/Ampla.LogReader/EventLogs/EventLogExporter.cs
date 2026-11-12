@@ -7,11 +7,11 @@ namespace Ampla.LogReader.EventLogs
         public string Export(string eventLog, string fileName)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
-                {
-                    FileName = "wevtutil.exe",
-                    UseShellExecute = true,
-                    Arguments = "epl " + eventLog + " " + fileName,
-                };
+            {
+                FileName = "wevtutil.exe",
+                UseShellExecute = true,
+                Arguments = "epl " + eventLog + " " + fileName,
+            };
 
             using (Process process = Process.Start(startInfo))
             {

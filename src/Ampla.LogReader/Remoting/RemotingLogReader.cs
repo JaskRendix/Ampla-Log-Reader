@@ -25,7 +25,7 @@ namespace Ampla.LogReader.Remoting
             XmlDocument xmlDoc;
 
             xmlDoc = LoadXmlDocument(fileName,
-                                     s => new SkipToContentTextReader("<RemotingEntry>", s), 
+                                     s => new SkipToContentTextReader("<RemotingEntry>", s),
                                      out ex);
             if (xmlDoc == null)
             {

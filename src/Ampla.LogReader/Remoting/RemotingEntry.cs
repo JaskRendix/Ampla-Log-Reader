@@ -11,13 +11,13 @@ namespace Ampla.LogReader.Remoting
         }
 
         private static readonly char[] Comma = new[] { ',' };
-        
+
         public DateTime CallTimeUtc { get; private set; }
 
         public DateTime CallTimeLocal { get; private set; }
 
         public string Identity { get; private set; }
-            
+
         public string Method { get; private set; }
 
         public string TypeName { get; private set; }
@@ -26,7 +26,7 @@ namespace Ampla.LogReader.Remoting
 
         public string ArgumentXml { get; private set; }
 
-        public RemotingArgument[] Arguments { get; private set; } 
+        public RemotingArgument[] Arguments { get; private set; }
 
         public static RemotingEntry LoadFromXml(XmlNode xmlNode)
         {
@@ -46,7 +46,7 @@ namespace Ampla.LogReader.Remoting
             {
                 entry.TypeName = entry.TypeName.Split(Comma, StringSplitOptions.None)[0];
             }
-            
+
             return entry;
         }
 

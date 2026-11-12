@@ -68,9 +68,9 @@ namespace Ampla.LogReader.Excel
         public void AddDataTable()
         {
             DataTable dataTable = new DataTable("Test");
-            dataTable.Columns.Add("A", typeof (string));
-            dataTable.Columns.Add("B", typeof (int));
-            dataTable.Columns.Add("C", typeof (double));
+            dataTable.Columns.Add("A", typeof(string));
+            dataTable.Columns.Add("B", typeof(int));
+            dataTable.Columns.Add("C", typeof(double));
 
             dataTable.Rows.Add("One", 1, 1.1D);
             dataTable.Rows.Add("Two", 2, 1.2D);
@@ -95,10 +95,10 @@ namespace Ampla.LogReader.Excel
                 result2 = worksheet.ReadRow();
                 result3 = worksheet.ReadRow();
                 result4 = worksheet.ReadRow();
-                
+
             }
 
-            Assert.That(result1, Is.EquivalentTo(new []{"A", "B", "C"}));
+            Assert.That(result1, Is.EquivalentTo(new[] { "A", "B", "C" }));
             Assert.That(result2, Is.EquivalentTo(new[] { "One", "1", "1.1" }));
             Assert.That(result3, Is.EquivalentTo(new[] { "Two", "2", "1.2" }));
             Assert.That(result4, Is.EquivalentTo(new[] { "Three", "3", "1.3" }));
@@ -132,7 +132,7 @@ namespace Ampla.LogReader.Excel
                 IWorksheetWriter worksheet = spreadsheet.WriteDataToWorksheet(dataTable, "Test");
                 Assert.That(worksheet, Is.Not.Null);
 
-                Assert.Throws<ArgumentException>(()=> spreadsheet.WriteDataToWorksheet(dataTable, "Test"));
+                Assert.Throws<ArgumentException>(() => spreadsheet.WriteDataToWorksheet(dataTable, "Test"));
             }
         }
 

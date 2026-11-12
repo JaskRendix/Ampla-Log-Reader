@@ -27,7 +27,7 @@ namespace Ampla.LogReader.Remoting
             if (!string.IsNullOrEmpty(view))
             {
                 //View Descriptor [Downtime.StandardView]
-                string[] parts = view.Split(new[] {"[", "."}, StringSplitOptions.RemoveEmptyEntries);
+                string[] parts = view.Split(new[] { "[", "." }, StringSplitOptions.RemoveEmptyEntries);
                 if (parts.Length == 3)
                 {
                     return parts[1];

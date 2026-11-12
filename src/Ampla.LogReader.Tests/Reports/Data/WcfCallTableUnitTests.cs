@@ -18,7 +18,7 @@ namespace Ampla.LogReader.Reports.Data
         {
             WcfLogReader reader = new WcfLogReader(logFileName);
             reader.ReadAll();
-            
+
             Assert.That(reader.Entries, Is.Not.Empty);
 
             using (IExcelSpreadsheet spreadsheet = ExcelSpreadsheet.CreateNew(Filename))
@@ -87,13 +87,13 @@ namespace Ampla.LogReader.Reports.Data
 
             TimeZoneInfo ist = TimeZoneHelper.GetSpecificTimeZone("India Standard Time");
             Assert.That(ist, Is.Not.Null);
-            
+
             using (IExcelSpreadsheet spreadsheet = ExcelSpreadsheet.CreateNew(Filename))
             {
-                DataTable localTable = new WcfCallTable(reader.Entries,TimeZoneInfo.Local).Data;
+                DataTable localTable = new WcfCallTable(reader.Entries, TimeZoneInfo.Local).Data;
                 spreadsheet.WriteDataToWorksheet(localTable, "LocalTime");
 
-                DataTable istTable = new WcfCallTable(reader.Entries,ist).Data;
+                DataTable istTable = new WcfCallTable(reader.Entries, ist).Data;
                 spreadsheet.WriteDataToWorksheet(istTable, "IST Time");
 
                 Assert.That(localTable.Columns["CallTimeLocal"], Is.Not.Null);

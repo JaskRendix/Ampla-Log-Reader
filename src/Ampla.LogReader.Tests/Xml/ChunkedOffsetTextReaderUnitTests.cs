@@ -9,7 +9,7 @@ namespace Ampla.LogReader.Xml
         [Test]
         public void ZeroOffset()
         {
-            ChunkedOffsetTextReader reader = new ChunkedOffsetTextReader(0, new [] {"ABC", "DEF", "GHI"});
+            ChunkedOffsetTextReader reader = new ChunkedOffsetTextReader(0, new[] { "ABC", "DEF", "GHI" });
             string read = reader.ReadToEnd();
             Assert.That(read, Is.EqualTo("ABC\r\nDEF\r\nGHI"));
 

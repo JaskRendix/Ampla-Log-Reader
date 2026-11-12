@@ -24,9 +24,9 @@ namespace Ampla.LogReader.ReportWriters
                 action();
             }
         }
-        
+
         private XmlWriter xmlWriter;
-        private readonly Stack<string> depthStack = new Stack<string>();  
+        private readonly Stack<string> depthStack = new Stack<string>();
 
         public XmlReportWriter(XmlWriter xmlWriter)
         {

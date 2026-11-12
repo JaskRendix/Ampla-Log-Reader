@@ -17,18 +17,18 @@ namespace Ampla.LogReader.Excel
 
         public bool IsEmpty
         {
-            get 
-            { 
+            get
+            {
                 string value = GetValue<string>();
                 return string.IsNullOrEmpty(value);
             }
-            
+
         }
 
         public string Address
         {
             get { return cellReader.Address; }
-            
+
         }
 
         public void AssertValue<T>(IResolveConstraint resolveConstraint)

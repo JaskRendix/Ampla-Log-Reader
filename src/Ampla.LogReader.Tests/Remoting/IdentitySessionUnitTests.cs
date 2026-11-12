@@ -47,7 +47,7 @@ namespace Ampla.LogReader.Remoting
             IdentitySession identitySession2 = new IdentitySession("Identity", "Session");
             IdentitySession identitySession3 = new IdentitySession("Identity1", "Session");
             IdentitySession nullSession3 = new IdentitySession("Identity1", null);
-            Dictionary<IdentitySession, string> dictionary = new Dictionary<IdentitySession,string>();
+            Dictionary<IdentitySession, string> dictionary = new Dictionary<IdentitySession, string>();
 
             dictionary[identitySession1] = identitySession1.Identity;
             Assert.That(dictionary.Count, Is.EqualTo(1));

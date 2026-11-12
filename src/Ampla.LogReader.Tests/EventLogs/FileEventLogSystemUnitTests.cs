@@ -76,7 +76,7 @@ namespace Ampla.LogReader.EventLogs
         {
             CompareLogReaders("Application", "Compare.Application.evtx", 10);
         }
-        
+
         private void CompareLogReaders(string eventLogName, string fileName, int entries)
         {
             string evtxFileName = GetSpecificFile(fileName);

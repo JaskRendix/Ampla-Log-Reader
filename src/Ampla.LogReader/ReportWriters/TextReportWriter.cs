@@ -35,7 +35,7 @@ namespace Ampla.LogReader.ReportWriters
         public IDisposable StartReport(string reportName)
         {
             WriteBlock(reportName, '*');
-            return new DisposeFunc(((IReportWriter) this).EndReport);
+            return new DisposeFunc(((IReportWriter)this).EndReport);
         }
 
         void IReportWriter.EndReport()

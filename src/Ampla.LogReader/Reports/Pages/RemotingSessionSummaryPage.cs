@@ -11,8 +11,8 @@ namespace Ampla.LogReader.Reports.Pages
     public class RemotingSessionSummaryPage : ReportPage<RemotingEntry>
     {
         private readonly SessionSummaryStatistic sessionStatistics;
-        private readonly TimeBasedStatistic<RemotingEntry, string> summary; 
-        
+        private readonly TimeBasedStatistic<RemotingEntry, string> summary;
+
         public RemotingSessionSummaryPage(IExcelSpreadsheet excelSpreadsheet, List<RemotingEntry> entries)
             : base(excelSpreadsheet, entries, "Sessions")
         {
@@ -22,9 +22,9 @@ namespace Ampla.LogReader.Reports.Pages
 
         protected override void RenderPage(IWorksheetWriter writer)
         {
-            UpdateStatistics(new IStatistic<RemotingEntry>[] {sessionStatistics, summary});
+            UpdateStatistics(new IStatistic<RemotingEntry>[] { sessionStatistics, summary });
 
-            DateTime offset = summary.FirstEntry.HasValue ? summary.FirstEntry.Value : new DateTime(DateTime.Now.Year, 1, 1, 0,0,0,DateTimeKind.Local);
+            DateTime offset = summary.FirstEntry.HasValue ? summary.FirstEntry.Value : new DateTime(DateTime.Now.Year, 1, 1, 0, 0, 0, DateTimeKind.Local);
             offset = offset.TruncateToLocalDay();
 
             writer.WriteRow("Sessions");
@@ -38,11 +38,11 @@ namespace Ampla.LogReader.Reports.Pages
                     DateTime firstEntry = session.FirstEntry.Value;
                     DateTime? lastEntry = session.LastEntry;
                     double start = firstEntry.Subtract(offset).TotalDays;
-                    double duration = session.Duration.TotalDays; 
-                    writer.WriteRow(session.Key.Identity, session.Key.Session, session.Count, 
-                        firstEntry, lastEntry, 
+                    double duration = session.Duration.TotalDays;
+                    writer.WriteRow(session.Key.Identity, session.Key.Session, session.Count,
+                        firstEntry, lastEntry,
                         session.Duration.TotalHours,
-                        start, duration );
+                        start, duration);
                 }
             }
             else
@@ -51,6 +51,6 @@ namespace Ampla.LogReader.Reports.Pages
             }
 
         }
-        
+
     }
 }

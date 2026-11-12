@@ -22,7 +22,7 @@ namespace Ampla.LogReader.Xml
             string xml = reader.ReadToEnd();
             Assert.That(xml, Is.EqualTo("text"));
         }
-        
+
         [Test]
         public void TwoLines()
         {

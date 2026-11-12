@@ -16,7 +16,7 @@ namespace Ampla.LogReader.Xml
         /// <exception cref="System.InvalidOperationException">Use GetDateTime() to get DateTime values</exception>
         public static T GetValue<T>(XmlNode xmlNode, string xPath, T defaultValue)
         {
-            if (typeof (T) == typeof (DateTime))
+            if (typeof(T) == typeof(DateTime))
             {
                 throw new InvalidOperationException("Use GetDateTime() to get DateTime values");
             }
@@ -28,7 +28,7 @@ namespace Ampla.LogReader.Xml
                 string value = valueNode.InnerText;
                 //if (!string.IsNullOrEmpty(value))
                 {
-                    return (T) Convert.ChangeType(value, typeof (T));
+                    return (T)Convert.ChangeType(value, typeof(T));
                 }
             }
             return defaultValue;

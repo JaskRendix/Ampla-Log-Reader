@@ -11,54 +11,54 @@ namespace Ampla.LogReader.Reports.Packs
     [TestFixture]
     public class WcfExcelReportPackUnitTests : ExcelTestFixture
     {
-         [Test]
-         public void SimpleAmplaProject()
-         {
-             AmplaProject project = AmplaTestProjects.GetAmplaProject();
+        [Test]
+        public void SimpleAmplaProject()
+        {
+            AmplaProject project = AmplaTestProjects.GetAmplaProject();
 
-             WcfExcelReportPack reportPack = new WcfExcelReportPack(Filename, project);
-             reportPack.Render();
+            WcfExcelReportPack reportPack = new WcfExcelReportPack(Filename, project);
+            reportPack.Render();
 
-             Assert.That(File.Exists(Filename), Is.True);
+            Assert.That(File.Exists(Filename), Is.True);
 
-             AssertWorksheetExists("Summary");
-             AssertWorksheetExists("WcfCalls");
-             AssertWorksheetExists("Faults");
-             AssertWorksheetExists("Locations");
-         }
+            AssertWorksheetExists("Summary");
+            AssertWorksheetExists("WcfCalls");
+            AssertWorksheetExists("Faults");
+            AssertWorksheetExists("Locations");
+        }
 
-         [Test]
-         public void WcfOnlyProject()
-         {
-             AmplaProject project = AmplaTestProjects.GetWcfOnlyProject();
+        [Test]
+        public void WcfOnlyProject()
+        {
+            AmplaProject project = AmplaTestProjects.GetWcfOnlyProject();
 
-             WcfExcelReportPack reportPack = new WcfExcelReportPack(Filename, project);
-             reportPack.Render();
+            WcfExcelReportPack reportPack = new WcfExcelReportPack(Filename, project);
+            reportPack.Render();
 
-             Assert.That(File.Exists(Filename), Is.True);
+            Assert.That(File.Exists(Filename), Is.True);
 
-             AssertWorksheetExists("Summary");
-             AssertWorksheetExists("WcfCalls");
-             AssertWorksheetExists("Faults");
-             AssertWorksheetExists("Locations");
-         }
+            AssertWorksheetExists("Summary");
+            AssertWorksheetExists("WcfCalls");
+            AssertWorksheetExists("Faults");
+            AssertWorksheetExists("Locations");
+        }
 
 
-         [Test]
-         public void WcfFaults()
-         {
-             AmplaProject project = AmplaTestProjects.GetWcfFaultsProject();
+        [Test]
+        public void WcfFaults()
+        {
+            AmplaProject project = AmplaTestProjects.GetWcfFaultsProject();
 
-             WcfExcelReportPack reportPack = new WcfExcelReportPack(Filename, project);
-             reportPack.Render();
+            WcfExcelReportPack reportPack = new WcfExcelReportPack(Filename, project);
+            reportPack.Render();
 
-             Assert.That(File.Exists(Filename), Is.True);
+            Assert.That(File.Exists(Filename), Is.True);
 
-             AssertWorksheetExists("Summary");
-             AssertWorksheetExists("WcfCalls");
-             AssertWorksheetExists("Faults");
-             AssertWorksheetExists("Locations");
-         }
+            AssertWorksheetExists("Summary");
+            AssertWorksheetExists("WcfCalls");
+            AssertWorksheetExists("Faults");
+            AssertWorksheetExists("Locations");
+        }
 
         [Test]
         public void TimeZoneReport()

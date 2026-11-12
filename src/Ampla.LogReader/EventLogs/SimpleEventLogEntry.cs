@@ -12,7 +12,7 @@ namespace Ampla.LogReader.EventLogs
     {
         public SimpleEventLogEntry(EventRecord eventRecord)
         {
-            Index = (int) GetValue(eventRecord.RecordId, 0);
+            Index = (int)GetValue(eventRecord.RecordId, 0);
             CallTime = GetValue(eventRecord.TimeCreated, DateTime.MinValue).ToUniversalTime();
             Source = eventRecord.ProviderName;
             InstanceId = GetValue(eventRecord.Id, 0);
@@ -89,8 +89,8 @@ namespace Ampla.LogReader.EventLogs
             return EventLogEntryType.Information;
         }
 
-        private static readonly string[] IgnoredCategories = new string[] {"(0)", "(1)", "(2)"};
-    
+        private static readonly string[] IgnoredCategories = new string[] { "(0)", "(1)", "(2)" };
+
         public SimpleEventLogEntry(EventLogEntry eventLogEntry)
         {
             Index = eventLogEntry.Index;
@@ -112,7 +112,7 @@ namespace Ampla.LogReader.EventLogs
         public int Index { get; private set; }
 
         public DateTime CallTime { get; private set; }
-        
+
         public string Category { get; private set; }
 
         public string Source { get; private set; }

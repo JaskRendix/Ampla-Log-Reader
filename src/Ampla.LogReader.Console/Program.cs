@@ -126,37 +126,37 @@ namespace Ampla.LogReader.Console
             switch (options.OutputMode)
             {
                 case OutputMode.Text:
-                {
-                    reportWriter = new TextReportWriter(System.Console.Out);
-                    break;
-                }
+                    {
+                        reportWriter = new TextReportWriter(System.Console.Out);
+                        break;
+                    }
 
                 case OutputMode.Xml:
-                {
-                    string fileName = options.OutputFile ?? "output.xml";
-
-                    XmlWriterSettings settings = new XmlWriterSettings
                     {
-                        Indent = true
-                    };
+                        string fileName = options.OutputFile ?? "output.xml";
 
-                    XmlWriter xmlWriter = XmlWriter.Create(fileName, settings);
-                    reportWriter = new XmlReportWriter(xmlWriter);
-                    break;
-                }
+                        XmlWriterSettings settings = new XmlWriterSettings
+                        {
+                            Indent = true
+                        };
+
+                        XmlWriter xmlWriter = XmlWriter.Create(fileName, settings);
+                        reportWriter = new XmlReportWriter(xmlWriter);
+                        break;
+                    }
 
                 case OutputMode.Excel:
-                {
-                    string fileName = options.OutputFile ?? "output.xlsx";
-                    reportWriter = new ExcelReportWriter(fileName);
-                    break;
-                }
+                    {
+                        string fileName = options.OutputFile ?? "output.xlsx";
+                        reportWriter = new ExcelReportWriter(fileName);
+                        break;
+                    }
 
                 default:
-                {
-                    reportWriter = new TextReportWriter(System.Console.Out);
-                    break;
-                }
+                    {
+                        reportWriter = new TextReportWriter(System.Console.Out);
+                        break;
+                    }
             }
 
             return reportWriter;

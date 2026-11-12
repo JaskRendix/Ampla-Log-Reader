@@ -30,7 +30,7 @@ namespace Ampla.LogReader.Reports.Pages
                     page.Row(1).AssertValues<string>(Is.Not.Empty);
                     page.Row(2).AssertValues<string>(Is.Not.Empty);
 
-                    page.Row(2).AssertValues<string>(Is.EquivalentTo(new[] {"No Faults found"}));
+                    page.Row(2).AssertValues<string>(Is.EquivalentTo(new[] { "No Faults found" }));
                 }
             }
         }

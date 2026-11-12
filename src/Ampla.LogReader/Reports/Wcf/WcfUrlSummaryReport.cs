@@ -15,12 +15,12 @@ namespace Ampla.LogReader.Reports.Wcf
         protected override void RenderReport(IReportWriter reportWriter)
         {
             GroupByAnalysis<WcfCall, WcfSummaryStatistic, string> analysis = new GroupByAnalysis<WcfCall, WcfSummaryStatistic, string>
-                {
-                    WhereFunc = entry => true,
-                    GroupByFunc = entry => entry.Url,
-                    //entry.Method, //entry => entry.CallTime.ToLocalTime().ToShortDateString(),
-                    StatisticFactory = key => new WcfSummaryStatistic(key)
-                };
+            {
+                WhereFunc = entry => true,
+                GroupByFunc = entry => entry.Url,
+                //entry.Method, //entry => entry.CallTime.ToLocalTime().ToShortDateString(),
+                StatisticFactory = key => new WcfSummaryStatistic(key)
+            };
 
             foreach (var wcfCall in Entries)
             {

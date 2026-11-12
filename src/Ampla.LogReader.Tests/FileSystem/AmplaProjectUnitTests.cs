@@ -10,10 +10,10 @@ namespace Ampla.LogReader.FileSystem
         public void WcfLogDirectory()
         {
             AmplaProject project = new AmplaProject
-                {
-                    ProjectName = "AmplaProject",
-                    Directory = Path.Combine(".\\Projects", "AmplaProject")
-                };
+            {
+                ProjectName = "AmplaProject",
+                Directory = Path.Combine(".\\Projects", "AmplaProject")
+            };
 
             Assert.That(project.WcfLogDirectory, Does.EndWith("ReplayLogs\\WCFRecorder"));
         }

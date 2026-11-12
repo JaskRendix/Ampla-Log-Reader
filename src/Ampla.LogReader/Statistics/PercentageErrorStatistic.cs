@@ -11,7 +11,7 @@ namespace Ampla.LogReader.Statistics
         private readonly string name;
         private readonly Func<TEntry, bool> isErrorFunc;
         private int errors;
-        private int total ;
+        private int total;
 
         public PercentageErrorStatistic(string name, Func<TEntry, bool> isErrorFunc)
         {
@@ -44,7 +44,7 @@ namespace Ampla.LogReader.Statistics
 
         public double ErrorPercent
         {
-            get { return total == 0 ? double.NaN : errors*100.0D/total; }
+            get { return total == 0 ? double.NaN : errors * 100.0D / total; }
         }
 
         public string Name

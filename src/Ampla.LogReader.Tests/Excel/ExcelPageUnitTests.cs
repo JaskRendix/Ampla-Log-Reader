@@ -84,7 +84,7 @@ namespace Ampla.LogReader.Excel
                 {
                     page.ReadLines(4);
                     page.FindRow(1, s => s.EndsWith("3")).AssertValues<string>(Is.EquivalentTo(new[] { "A3", "B3", "C3" }));
-                    
+
                     Assert.Throws<AssertionException>(() => page.FindRow(1, s => s.StartsWith("X")));
                 }
             }

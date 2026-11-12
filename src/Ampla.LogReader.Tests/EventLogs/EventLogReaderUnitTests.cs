@@ -28,7 +28,7 @@ namespace Ampla.LogReader.EventLogs
             ILocalEventLogSystem eventLogSystem = new LocalEventLogSystem();
             EventLog eventLog = eventLogSystem.GetEventLogs().FirstOrDefault(ev => ev.Entries.Count > 0);
             Assert.That(eventLog, Is.Not.Null, "Unable to find an Event Log with something in it.");
-            
+
             EventLogReader reader = new EventLogReader(eventLog);
             Assert.That(reader.Entries, Is.Empty);
 

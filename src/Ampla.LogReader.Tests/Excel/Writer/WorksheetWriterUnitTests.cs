@@ -189,7 +189,7 @@ namespace Ampla.LogReader.Excel.Writer
                 using (IWorksheetWriter writer = spreadsheet.WriteToWorksheet("UnitTests"))
                 {
                     Assert.That(writer.GetCurrentCell().Address, Is.EqualTo("A1"));
-                    writer.WriteRow((string[]) null); // A1
+                    writer.WriteRow((string[])null); // A1
                     Assert.That(writer.GetCurrentCell().Address, Is.EqualTo("A2"));
                 }
             }

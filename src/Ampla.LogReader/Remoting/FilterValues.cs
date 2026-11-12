@@ -18,7 +18,7 @@ namespace Ampla.LogReader.Remoting
             List<string> filterData = new List<string>();
 
             Location = filters.Count > 0 ? "Unknown" : null;
-            
+
             foreach (FieldValue filterValue in filters)
             {
                 if (filterValue.Name == "Location")
@@ -52,7 +52,7 @@ namespace Ampla.LogReader.Remoting
         {
             if (filter != null)
             {
-                string[] parsed = filter.Split(new[] {"}, "}, StringSplitOptions.None);
+                string[] parsed = filter.Split(new[] { "}, " }, StringSplitOptions.None);
                 int missing = parsed.Length - 1;
                 List<FieldValue> filters = new List<FieldValue>();
                 for (int i = 0; i < parsed.Length; i++)
@@ -69,6 +69,6 @@ namespace Ampla.LogReader.Remoting
             }
             return new List<FieldValue>();
         }
-        
+
     }
 }

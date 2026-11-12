@@ -51,7 +51,7 @@ namespace Ampla.LogReader.Reports.Data
 
             Assert.That(remotingDirectory.Entries, Is.Not.Empty);
             RemotingEntry query = remotingDirectory.Entries.Find(re => re.Method == "Query");
-            
+
             Assert.That(query, Is.Not.Null);
             string session = query.Arguments[0].Value;
 

@@ -18,8 +18,8 @@ namespace Ampla.LogReader.Statistics
         [Test]
         public void Top1Stats()
         {
-            TopNStatistics<TestEntry> topStats = new TopNStatistics<TestEntry>("Top 1", 1, 
-                entry => entry.Group, 
+            TopNStatistics<TestEntry> topStats = new TopNStatistics<TestEntry>("Top 1", 1,
+                entry => entry.Group,
                 entry => true);
 
             Assert.That(topStats.Results, Is.Empty);

@@ -14,11 +14,11 @@ namespace Ampla.LogReader.Statistics
             Name = name;
             this.topN = topN;
             groupByAnalysis = new GroupByAnalysis<TEntry, CountStatistic<TEntry>, string>
-                {
-                    GroupByFunc = groupByFunc,
-                    WhereFunc = whereFunc ?? (entry => true),
-                    StatisticFactory = key => new CountStatistic<TEntry>(key)
-                };
+            {
+                GroupByFunc = groupByFunc,
+                WhereFunc = whereFunc ?? (entry => true),
+                StatisticFactory = key => new CountStatistic<TEntry>(key)
+            };
         }
 
         public void Add(TEntry entry)
@@ -28,7 +28,8 @@ namespace Ampla.LogReader.Statistics
 
         public IEnumerable<Result> Results
         {
-            get {
+            get
+            {
                 var descCounts = groupByAnalysis.Sort(CountStatistic<TEntry>.CompareByCountDesc());
 
                 int counter = 0;

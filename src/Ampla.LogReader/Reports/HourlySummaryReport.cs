@@ -11,7 +11,7 @@ namespace Ampla.LogReader.Reports
         private readonly Func<TEntry, DateTime> callTimeFunc;
         private readonly Func<DateTime, TStatistic> statisticFunc;
 
-        protected HourlySummaryReport(string reportName, List<TEntry> entries, IReportWriter writer, Func<TEntry, DateTime> callTimeFunc, Func<DateTime, TStatistic> statisticFunc )
+        protected HourlySummaryReport(string reportName, List<TEntry> entries, IReportWriter writer, Func<TEntry, DateTime> callTimeFunc, Func<DateTime, TStatistic> statisticFunc)
             : base(entries, writer)
         {
             this.reportName = reportName;
@@ -33,7 +33,7 @@ namespace Ampla.LogReader.Reports
                 analysis.Add(entry);
             }
 
-            var summaries = analysis.Sort((IComparer<TStatistic>) Statistic.CompareByName());
+            var summaries = analysis.Sort((IComparer<TStatistic>)Statistic.CompareByName());
 
             if (summaries.Count > 0)
             {

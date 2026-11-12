@@ -72,14 +72,14 @@ namespace Ampla.LogReader.Statistics
                 {
                     yield return Result.New<TimeSpan>(Name, "Total Duration", totalDuration);
                     yield return Result.New<TimeSpan>(Name, "Maximum Duration", maxDuration);
-                    yield return Result.New<TimeSpan>(Name, "Average Duration", new TimeSpan(totalDuration.Ticks/Count));
+                    yield return Result.New<TimeSpan>(Name, "Average Duration", new TimeSpan(totalDuration.Ticks / Count));
                 }
             }
         }
 
         public double ErrorPercent
         {
-            get { return Count == 0 ? 0.0d : Errors*100.0D/Count; }
+            get { return Count == 0 ? 0.0d : Errors * 100.0D / Count; }
         }
 
         public DateTime FirstEntry
@@ -102,7 +102,7 @@ namespace Ampla.LogReader.Statistics
 
         public int Errors { get; private set; }
 
-        public TimeSpan TotalDuration  
+        public TimeSpan TotalDuration
         {
             get
             {

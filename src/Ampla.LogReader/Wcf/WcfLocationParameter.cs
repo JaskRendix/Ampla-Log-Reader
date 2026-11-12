@@ -13,7 +13,7 @@ namespace Ampla.LogReader.Wcf
         public string Location { get; protected set; }
         public string Module { get; protected set; }
         public string MetaData { get; protected set; }
-        
+
         /// <summary>
         /// Gets the credentials from the WcfResponseMessage
         /// </summary>

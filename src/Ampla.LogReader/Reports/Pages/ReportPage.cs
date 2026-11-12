@@ -21,7 +21,7 @@ namespace Ampla.LogReader.Reports.Pages
         public void Render()
         {
             IWorksheetWriter writer = excelSpreadsheet.WriteToWorksheet(PageName);
-            
+
             RenderPage(writer);
         }
 

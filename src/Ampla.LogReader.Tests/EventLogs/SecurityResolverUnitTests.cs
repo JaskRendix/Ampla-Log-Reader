@@ -25,7 +25,7 @@ namespace Ampla.LogReader.EventLogs
             const string unknown = "S-1-5-21-3765203034-2564593448-2833180799-1004";
             AssertName(unknown, unknown);
         }
-        
+
         [Test]
         public void EmptyString()
         {
@@ -44,6 +44,6 @@ namespace Ampla.LogReader.EventLogs
             const string name = @"NT AUTHORITY\SYSTEM";
             AssertName(name, name);
         }
-         
+
     }
 }

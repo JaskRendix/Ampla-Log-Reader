@@ -7,7 +7,7 @@ namespace Ampla.LogReader.Wcf
 {
     public class WcfFault
     {
-        private static readonly string[] Newline = new [] {"\r\n", "\n"};
+        private static readonly string[] Newline = new[] { "\r\n", "\n" };
 
         public WcfFault(XmlNode faultMessageNode)
         {
@@ -19,7 +19,7 @@ namespace Ampla.LogReader.Wcf
                 {
                     FaultCode = XmlHelper.GetValue<string>(faultNode, "faultcode", null);
                     XmlNode stringNode = XmlHelper.GetNode(faultNode, "faultstring");
-                    
+
                     XmlNode detailsNode = XmlHelper.GetNode(faultNode, "detail");
 
                     FaultString = GetMessage(stringNode, detailsNode);
@@ -34,7 +34,7 @@ namespace Ampla.LogReader.Wcf
                 if (NamespaceHelper.IsW3SoapNode(faultNode))
                 {
                     FaultCode = XmlHelper.GetText(faultNode, "*[name() = 'Code']");
-                    
+
                     XmlNode stringNode = XmlHelper.GetNode(faultNode, "*[name()='Reason']");
                     XmlNode detailsNode = XmlHelper.GetNode(faultNode, "*[name()='Detail']");
 
@@ -47,7 +47,7 @@ namespace Ampla.LogReader.Wcf
                     }
                 }
             }
-            
+
             FaultString = RemoveWhiteSpace(FaultString);
         }
 

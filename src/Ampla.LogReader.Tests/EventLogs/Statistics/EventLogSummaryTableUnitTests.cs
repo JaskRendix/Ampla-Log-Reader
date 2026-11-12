@@ -25,8 +25,8 @@ namespace Ampla.LogReader.EventLogs.Statistics
         {
             EventLogSummaryTable table = new EventLogSummaryTable("Summary");
             ILocalEventLogSystem eventLogSystem = new LocalEventLogSystem();
-            EventLogReader reader = (from eventLog in eventLogSystem.GetEventLogs() 
-                                     where eventLog.Entries.Count == 0 
+            EventLogReader reader = (from eventLog in eventLogSystem.GetEventLogs()
+                                     where eventLog.Entries.Count == 0
                                      select new EventLogReader(eventLog)).FirstOrDefault();
 
             Assert.That(reader, Is.Not.Null, "No Event Logs found with zero entries");

@@ -31,17 +31,17 @@ namespace Ampla.LogReader.Wcf
         public static WcfCall LoadFromXml(XmlNode xmlNode)
         {
             WcfCall call = new WcfCall
-                {
-                    CallTime = XmlHelper.GetDateTimeUtc(xmlNode, "CallTime", DateTime.MinValue),
-                    Url = XmlHelper.GetValue(xmlNode, "Url", string.Empty),
-                    Action = XmlHelper.GetValue(xmlNode, "Action", string.Empty),
-                    Method = XmlHelper.GetValue(xmlNode, "Method", string.Empty),
-                    Duration = TimeSpan.FromMilliseconds(XmlHelper.GetValue(xmlNode, "Duration", 0D)),
-                    ResponseMessageLength = XmlHelper.GetValue(xmlNode, "ResponseMessageLength", 0D),
-                    IsFault = XmlHelper.GetValue(xmlNode, "IsFault", false),
-                    Fault = null,
-                    RequestMessage = XmlHelper.GetOuterXml(xmlNode, "RequestMessage"),
-                };
+            {
+                CallTime = XmlHelper.GetDateTimeUtc(xmlNode, "CallTime", DateTime.MinValue),
+                Url = XmlHelper.GetValue(xmlNode, "Url", string.Empty),
+                Action = XmlHelper.GetValue(xmlNode, "Action", string.Empty),
+                Method = XmlHelper.GetValue(xmlNode, "Method", string.Empty),
+                Duration = TimeSpan.FromMilliseconds(XmlHelper.GetValue(xmlNode, "Duration", 0D)),
+                ResponseMessageLength = XmlHelper.GetValue(xmlNode, "ResponseMessageLength", 0D),
+                IsFault = XmlHelper.GetValue(xmlNode, "IsFault", false),
+                Fault = null,
+                RequestMessage = XmlHelper.GetOuterXml(xmlNode, "RequestMessage"),
+            };
 
             if (call.IsFault)
             {

@@ -64,7 +64,7 @@ namespace Ampla.LogReader.Remoting
 
             Assert.That(entry.CallTimeLocal, Is.Not.EqualTo(entry.CallTimeUtc.ToLocalTime()), "Local time");
         }
-        
+
         [Test]
         public void Identity()
         {

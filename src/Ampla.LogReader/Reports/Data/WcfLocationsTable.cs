@@ -26,10 +26,10 @@ namespace Ampla.LogReader.Reports.Data
             table.Columns.Add("Location", typeof(string));
             table.Columns.Add("Operation", typeof(string));
             table.Columns.Add("MetaData", typeof(string));
-            
+
             table.Columns.Add("IsFault", typeof(bool));
             table.Columns.Add("FaultString", typeof(string));
-            
+
             table.Columns.Add("LocalDate", typeof(DateTime));
             table.Columns.Add("LocalHour", typeof(string));
             table.Columns.Add("DayOfWeek", typeof(string));
@@ -83,7 +83,7 @@ namespace Ampla.LogReader.Reports.Data
                         location.Location,
                         location.Operation,
                         location.MetaData,
-                        
+
                         call.IsFault,
                         call.Fault != null ? call.Fault.FaultString : "",
 

@@ -7,7 +7,7 @@ namespace Ampla.LogReader.Remoting
         public FieldValue(string name, string value)
         {
             Name = name;
-            Value = value;  
+            Value = value;
         }
 
         public string Name { get; private set; }
@@ -15,7 +15,7 @@ namespace Ampla.LogReader.Remoting
 
         public static FieldValue Parse(string filter)
         {
-            string[] parts = filter.Split(new[] {"={", "}"}, StringSplitOptions.None);
+            string[] parts = filter.Split(new[] { "={", "}" }, StringSplitOptions.None);
             if (parts.Length > 1)
             {
                 string name = parts[0];

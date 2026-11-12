@@ -3,20 +3,20 @@ using Ampla.LogReader.Remoting;
 
 namespace Ampla.LogReader.Statistics
 {
-    
+
     public class SessionSummaryStatistic : IStatistic<RemotingEntry>
     {
         private readonly GroupByAnalysis<RemotingEntry, TimeBasedStatistic<RemotingEntry, IdentitySession>, IdentitySession> groupByAnalysis;
-        
+
         public SessionSummaryStatistic(string name)
         {
             Name = name;
             groupByAnalysis = new GroupByAnalysis<RemotingEntry, TimeBasedStatistic<RemotingEntry, IdentitySession>, IdentitySession>
-                {
-                    GroupByFunc = entry => new IdentitySession(entry.Identity, entry.Arguments[0].Value),
-                    WhereFunc = entry => entry.Arguments.Length > 0 && entry.Arguments[0].TypeName == "System.Guid",
-                    StatisticFactory = key => new TimeBasedStatistic<RemotingEntry, IdentitySession>(key, entry => entry.CallTimeLocal, true)
-                };
+            {
+                GroupByFunc = entry => new IdentitySession(entry.Identity, entry.Arguments[0].Value),
+                WhereFunc = entry => entry.Arguments.Length > 0 && entry.Arguments[0].TypeName == "System.Guid",
+                StatisticFactory = key => new TimeBasedStatistic<RemotingEntry, IdentitySession>(key, entry => entry.CallTimeLocal, true)
+            };
         }
 
         public void Add(RemotingEntry entry)

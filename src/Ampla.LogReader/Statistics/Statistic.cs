@@ -21,7 +21,7 @@ namespace Ampla.LogReader.Statistics
         {
             return new Comparer<Statistic>((x, y) => StringComparer.InvariantCulture.Compare(x.Name, y.Name));
         }
-        
+
     }
 
     public abstract class Statistic<TEntry> : Statistic, IStatistic<TEntry>

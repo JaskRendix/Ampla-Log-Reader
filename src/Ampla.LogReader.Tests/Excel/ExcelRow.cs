@@ -45,7 +45,7 @@ namespace Ampla.LogReader.Excel
         {
             if (column > 0 && column <= columns.Count)
             {
-                ExcelCell cell = columns[column-1];
+                ExcelCell cell = columns[column - 1];
                 return cell.GetValue<T>();
             }
             return default(T);
@@ -58,7 +58,7 @@ namespace Ampla.LogReader.Excel
             builder.AppendFormat("Row {0:00}: {1}", row, '{');
             foreach (ExcelCell excelCell in columns)
             {
-                builder.AppendFormat(" '{0}'",excelCell.GetValue<string>());
+                builder.AppendFormat(" '{0}'", excelCell.GetValue<string>());
             }
             builder.Append(" }");
             return builder.ToString();

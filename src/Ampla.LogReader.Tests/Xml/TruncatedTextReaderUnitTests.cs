@@ -28,7 +28,7 @@ namespace Ampla.LogReader.Xml
         [Test]
         public void TwoEmptyLines()
         {
-            TruncatedTextReader reader = new TruncatedTextReader("Content", JoinStringReader("",""));
+            TruncatedTextReader reader = new TruncatedTextReader("Content", JoinStringReader("", ""));
             string xml = reader.ReadToEnd();
             Assert.That(xml, Is.EqualTo(""));
         }
@@ -62,7 +62,7 @@ namespace Ampla.LogReader.Xml
         public void MultipleChunks()
         {
             TruncatedTextReader reader = new TruncatedTextReader("end", JoinStringReader("line 1", "end", "line 2", "end", "line 3", "end", "after", ""));
-        
+
             string xml = reader.ReadToEnd();
             Assert.That(xml, Is.EqualTo(Join("line 1", "end", "line 2", "end", "line 3", "end", "")));
         }

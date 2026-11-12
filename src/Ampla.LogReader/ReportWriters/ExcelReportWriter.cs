@@ -39,7 +39,7 @@ namespace Ampla.LogReader.ReportWriters
         public IDisposable StartReport(string reportName)
         {
             excelWriter = spreadsheet.WriteToWorksheet(reportName);
-            return new DisposeFunc(((IReportWriter) this).EndReport);
+            return new DisposeFunc(((IReportWriter)this).EndReport);
         }
 
         void IReportWriter.EndReport()

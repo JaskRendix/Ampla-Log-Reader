@@ -17,14 +17,14 @@ namespace Ampla.LogReader.Reports.Pages
             summaryStatistic = new WcfSummaryStatistic("Faults");
             topNFaults = new TopNStatistics<WcfCall>
                 ("Top Faults", 100,
-                 entry => "[" + entry.Method + "] " + 
+                 entry => "[" + entry.Method + "] " +
                      entry.Fault.FaultString,
                  entry => entry.IsFault);
         }
 
         protected override void RenderPage(IWorksheetWriter writer)
         {
-            UpdateStatistics(new IStatistic<WcfCall>[] {summaryStatistic, topNFaults});
+            UpdateStatistics(new IStatistic<WcfCall>[] { summaryStatistic, topNFaults });
 
             writer.WriteRow("Summary of Wcf Faults");
             if (summaryStatistic.Errors > 0)
@@ -41,6 +41,6 @@ namespace Ampla.LogReader.Reports.Pages
                 writer.WriteRow("No Faults found");
             }
         }
-        
+
     }
 }

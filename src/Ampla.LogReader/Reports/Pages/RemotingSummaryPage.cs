@@ -30,7 +30,7 @@ namespace Ampla.LogReader.Reports.Pages
 
         protected override void RenderPage(IWorksheetWriter writer)
         {
-            UpdateStatistics(new IStatistic<RemotingEntry>[] {summaryStatistic, top50IdentityStats, top50MethodStats});
+            UpdateStatistics(new IStatistic<RemotingEntry>[] { summaryStatistic, top50IdentityStats, top50MethodStats });
 
             writer.WriteRow("Summary of Remoting calls");
             if (summaryStatistic.Count > 0)
@@ -56,6 +56,6 @@ namespace Ampla.LogReader.Reports.Pages
             }
         }
 
-        
+
     }
 }
