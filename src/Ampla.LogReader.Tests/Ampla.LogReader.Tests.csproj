@@ -6,7 +6,6 @@
     <RootNamespace>Ampla.LogReader</RootNamespace>
     <AssemblyName>Ampla.LogReader.Tests</AssemblyName>
     <PlatformTarget>x86</PlatformTarget>
-    <SupportedOSPlatform>windows</SupportedOSPlatform>
   </PropertyGroup>
 
   <ItemGroup>
